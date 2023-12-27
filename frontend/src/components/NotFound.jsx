@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import notFoundImg from '../assets/404.svg';
 
-const NotFoundPage = () => {
+const NotFound = () => {
   const { t } = useTranslation();
 
   return (
@@ -18,4 +18,4 @@ const NotFoundPage = () => {
   );
 };
 
-export default NotFoundPage;
+export default NotFound;

@@ -1,8 +1,8 @@
 {
   "name": "@hexlet/code",
   "version": "1.0.0",
-  "description": "[![Actions Status](https://github.com/ivp9/frontend-project-12/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/ivp9/frontend-project-12/actions)",
-  "main": "index.js",
+  "description": "chat app",
+  "main": "./frontend/src/index.js",
   "scripts": {
     "start": "start-server -s ./frontend/build",
     "test": "echo \"Error: no test specified\" && exit 1"

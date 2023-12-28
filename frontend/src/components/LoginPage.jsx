@@ -1,4 +1,5 @@
 import * as yup from 'yup';
+import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
 import { useFormik } from 'formik';
 import {
@@ -9,8 +10,11 @@ import {
   Button,
   Form,
 } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import useAuth from '../hooks/auth.jsx';
 import loginImg from '../assets/login.jpg';
+import routes from '../routes.js';
 
 const loginSchema = yup.object().shape({
   name: yup.string().required(),
@@ -19,7 +23,9 @@ const loginSchema = yup.object().shape({
 
 const LoginPage = () => {
   const inputNameRef = useRef();
-  const [formValid, setFormValid] = useState(false);
+  const [authFailed, setAuthFailed] = useState(false);
+  const auth = useAuth();
+  const navigate = useNavigate();
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -30,13 +36,27 @@ const LoginPage = () => {
     initialValues: {
       username: '',
       password: '',
+      validationSchema: loginSchema,
     },
     onSubmit: async (values) => {
       try {
-        await loginSchema.validate(values);
-        setFormValid(true);
-      } catch {
-        setFormValid(false);
+        const response = await axios.post(routes.loginPath(), {
+          username: values.username,
+          password: values.password,
+        });
+
+        localStorage.setItem('userId', JSON.stringify(response.data));
+        auth.logIn();
+        setAuthFailed(false);
+        navigate('/');
+      } catch (err) {
+        formik.setSubmitting(false);
+
+        if (err.isAxiosError && err.response.status === 401) {
+          setAuthFailed(true);
+          navigate('/login');
+          inputNameRef.current.select();
+        }
       }
     },
   });
@@ -62,7 +82,7 @@ const LoginPage = () => {
                     id="username"
                     onChange={formik.handleChange}
                     value={formik.values.username}
-                    isInvalid={formValid}
+                    isInvalid={authFailed}
                     ref={inputNameRef}
                   />
                   <Form.Label htmlFor="username">{t('placeholders.login')}</Form.Label>
@@ -78,7 +98,7 @@ const LoginPage = () => {
                     id="password"
                     onChange={formik.handleChange}
                     value={formik.values.password}
-                    isInvalid={formValid}
+                    isInvalid={authFailed}
                   />
                   <Form.Label htmlFor="password">{t('placeholders.password')}</Form.Label>
                   <div className="invalid-tooltip">{t('invalidFeedback')}</div>

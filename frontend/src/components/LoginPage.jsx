@@ -45,7 +45,7 @@ const LoginPage = () => {
           password: values.password,
         });
 
-        localStorage.setItem('userId', JSON.stringify(response.data));
+        localStorage.setItem('userdata', JSON.stringify(response.data));
         auth.logIn();
         setAuthFailed(false);
         navigate('/');

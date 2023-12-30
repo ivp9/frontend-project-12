@@ -3,10 +3,11 @@ import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
 import fetchData from './fetchData.js';
 
 const channelsAdapter = createEntityAdapter();
+const generalChanelId = 1;
 
 const initialState = {
   channels: [],
-  currentChannelId: 1,
+  currentChannelId: generalChanelId,
 };
 
 const channelsSlice = createSlice({

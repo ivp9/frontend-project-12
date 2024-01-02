@@ -1,4 +1,3 @@
-import * as yup from 'yup';
 import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
 import { useFormik } from 'formik';
@@ -15,11 +14,7 @@ import { useTranslation } from 'react-i18next';
 import useAuth from '../hooks/auth.jsx';
 import loginImg from '../assets/login.jpg';
 import routes from '../routes.js';
-
-const loginSchema = yup.object().shape({
-  name: yup.string().required(),
-  password: yup.string().required(),
-});
+import { loginSchema } from '../validation/validationSchema.js';
 
 const LoginPage = () => {
   const inputNameRef = useRef();

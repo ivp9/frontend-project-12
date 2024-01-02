@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 import axios from 'axios';
+import { toast } from 'react-toastify';
 import React, { useEffect, useRef, useState } from 'react';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
@@ -12,7 +13,6 @@ import {
   Button,
   Form,
 } from 'react-bootstrap';
-
 import routes from '../routes.js';
 import useAuth from '../hooks/auth.js';
 import registrationImg from '../assets/signup.jpg';
@@ -24,25 +24,21 @@ const SignupPage = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [registrationFailed, setRegistrationFailed] = useState(false);
-
   useEffect(() => {
     inputNameRef.current.focus();
   }, []);
-
   const formik = useFormik({
     initialValues: {
       username: '',
       password: '',
       passwordConfirmation: '',
     },
-
     validationSchema: registrationSchema(
       t('registrationRules.name'),
       t('registrationRules.password'),
       t('registrationRules.passwordEquality'),
       t('errors.required'),
     ),
-
     onSubmit: async (values) => {
       try {
         const res = await axios.post(routes.signupPath(), {
@@ -55,9 +51,15 @@ const SignupPage = () => {
         navigate('/');
       } catch (err) {
         formik.setSubmitting(false);
-        if (err.isAxiosError && err.response.status === 409) {
-          setRegistrationFailed(true);
-          inputNameRef.current.select();
+        if (err.isAxiosError) {
+          if (err.response.status === 409) {
+            setRegistrationFailed(true);
+            inputNameRef.current.select();
+          } else {
+            toast.error(t('errors.network'));
+          }
+        } else {
+          toast.error(err.message);
         }
       }
     },

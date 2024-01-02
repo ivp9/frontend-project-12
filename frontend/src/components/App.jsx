@@ -1,4 +1,7 @@
 import React, { useState, useMemo } from 'react';
+import { Button, Navbar, Container } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
+import { ToastContainer } from 'react-toastify';
 import {
   BrowserRouter as Router,
   Routes,
@@ -7,12 +10,10 @@ import {
   Navigate,
   useLocation,
 } from 'react-router-dom';
-import { Button, Navbar, Container } from 'react-bootstrap';
-import { useTranslation } from 'react-i18next';
+
 import AuthContext from '../contexts/index.js';
 import useAuth from '../hooks/auth.js';
 import routes from '../routes.js';
-
 import Signup from './SignupPage.jsx';
 import LoginPage from './LoginPage.jsx';
 import ChatPage from './ChatPage.jsx';
@@ -58,6 +59,8 @@ const App = () => {
               <AuthButton />
             </Container>
           </Navbar>
+          <ToastContainer />
+
           <Routes>
             <Route
               path={routes.chatPagePath()}
@@ -71,7 +74,6 @@ const App = () => {
             <Route path={routes.signupPagePath()} element={<Signup />} />
             <Route path={routes.notFoundPath()} element={<NotFound />} />
           </Routes>
-
         </Router>
       </div>
     </AuthProvider>

@@ -1,16 +1,26 @@
 import React, { useMemo } from 'react';
-
 import { SocketContext } from './index.jsx';
 
 const SocketProvider = ({ api, children }) => {
-  const { addNewMessage } = api;
-  const functions = useMemo(() => ({ addNewMessage }), [addNewMessage]);
+  const {
+    addNewMessage,
+    addNewChannel,
+    removeChannel,
+    renameChannel,
+  } = api;
+
+  const values = useMemo(() => (
+    {
+      addNewMessage,
+      addNewChannel,
+      removeChannel,
+      renameChannel,
+    }), [addNewMessage, addNewChannel, removeChannel, renameChannel]);
 
   return (
-    <SocketContext.Provider value={functions}>
+    <SocketContext.Provider value={values}>
       {children}
     </SocketContext.Provider>
   );
 };
-
 export default SocketProvider;

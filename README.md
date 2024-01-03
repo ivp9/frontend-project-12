@@ -14,7 +14,7 @@ Node.js v16+
 ### Installation guide
 ````
 $ git clone git@github.com:ivp9/frontend-project-12.git
-$ make install
-$ make build
-$ make start
+$ npm ci
+$ npm start
+$ cd frontend/ && npm start
 ````

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-import { Container, Row } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
+import { Container, Row } from 'react-bootstrap';
 
 import fetchData from '../slices/fetchData.js';
 

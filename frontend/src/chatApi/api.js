@@ -9,7 +9,6 @@ import {
 
 const chatApi = (socket, store) => {
   const { dispatch } = store;
-
   const apiConnect = () => socket.connect();
   const apiDisconnect = () => socket.disconnect();
   socket.on('newMessage', (msg) => {

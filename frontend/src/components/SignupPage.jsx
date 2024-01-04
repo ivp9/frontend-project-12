@@ -29,7 +29,12 @@ const SignupPage = () => {
       passwordConfirmation: '',
     },
 
-    validationSchema: registrationSchema(t('registrationRules.name'), t('registrationRules.password'), t('registrationRules.passwordEquality'), t('errors.required')),
+    validationSchema: registrationSchema(
+      t('registrationRules.name'),
+      t('registrationRules.password'),
+      t('registrationRules.passwordEquality'),
+      t('errors.required'),
+    ),
 
     onSubmit: async (values) => {
       try {

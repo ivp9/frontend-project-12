@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
-import { Modal, Form, Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
+import { Modal, Form, Button } from 'react-bootstrap';
 
 const ModalComponent = (props) => {
   const { values } = props;
@@ -30,6 +30,7 @@ const ModalComponent = (props) => {
 
       <Modal.Body>
         <Form onSubmit={formik.handleSubmit}>
+
           <Form.Label className="visually-hidden" htmlFor="channelName">{t('modal.channelName')}</Form.Label>
           <Form.Control
             id="channelName"

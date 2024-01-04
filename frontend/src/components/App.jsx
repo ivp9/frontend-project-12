@@ -10,9 +10,9 @@ import {
   useLocation,
 } from 'react-router-dom';
 
-import AuthProvider from '../contexts/AuthProvider.jsx';
 import useAuth from '../hooks/auth.js';
 import routes from '../routes.js';
+import AuthProvider from '../contexts/AuthProvider.jsx';
 
 import Signup from './SignupPage.jsx';
 import LoginPage from './LoginPage.jsx';
@@ -31,6 +31,7 @@ const PrivateRoute = ({ children }) => {
 const AuthButton = () => {
   const auth = useAuth();
   const { t } = useTranslation();
+
   return auth.loggedIn
     ? <Button onClick={auth.logOut}>{t('exit')}</Button>
     : '';
@@ -48,7 +49,9 @@ const App = () => {
               <AuthButton />
             </Container>
           </Navbar>
+
           <ToastContainer />
+
           <Routes>
             <Route
               path={routes.chatPagePath()}
@@ -62,6 +65,7 @@ const App = () => {
             <Route path={routes.signupPagePath()} element={<Signup />} />
             <Route path={routes.notFoundPath()} element={<NotFound />} />
           </Routes>
+
         </Router>
       </div>
     </AuthProvider>

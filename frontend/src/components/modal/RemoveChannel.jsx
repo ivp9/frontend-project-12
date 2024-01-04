@@ -1,8 +1,8 @@
 import React from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import { toast } from 'react-toastify';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { toast } from 'react-toastify';
+import { Modal, Button } from 'react-bootstrap';
 
 import useSocket from '../../hooks/socket.js';
 import { closeModal } from '../../slices/modalSlice.js';

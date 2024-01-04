@@ -7,21 +7,14 @@ import { I18nextProvider, initReactI18next } from 'react-i18next';
 import { Provider as StoreProvider } from 'react-redux';
 import { Provider as RollbarProvider, ErrorBoundary } from '@rollbar/react';
 
-import App from './components/App.jsx';
-import SocketProvider from './contexts/SocketProvider.jsx';
-import resources from './locales/index.js';
-import store from './slices/index.js';
-import chatApi from './chatApi/api.js';
+import App from './components/App';
+import SocketProvider from './contexts/SocketProvider';
+import resources from './locales/index';
+import store from './slices/index';
+import chatApi from './chatApi/api';
+import rollbarConfig from './configs/rollbarConfig';
 
 const init = async (socket) => {
-  const rollbarConfig = {
-    accessToken: process.env.REACT_APP_ROLLBAR_ACCESS_TOKEN,
-    enabled: process.env.NODE_ENV === 'production',
-    captureUncaught: true,
-    captureUnhandledRejections: true,
-    environment: 'production',
-  };
-
   const api = chatApi(socket, store);
   const i18n = i18next.createInstance();
 

@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { SocketContext } from './index.js';
+import { SocketContext } from './index';
 
 const SocketProvider = ({ api, children }) => {
   const {

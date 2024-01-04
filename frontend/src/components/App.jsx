@@ -17,7 +17,7 @@ import AuthProvider from '../contexts/AuthProvider';
 import Signup from './SignupPage';
 import LoginPage from './LoginPage';
 import ChatPage from './ChatPage';
-import NotFound from './NotFound';
+import NotFound from './Errors/NotFoundPage';
 
 const PrivateRoute = ({ children }) => {
   const auth = useAuth();

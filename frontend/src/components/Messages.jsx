@@ -1,4 +1,5 @@
 import filter from 'leo-profanity';
+import { toast } from 'react-toastify';
 import React, { useRef, useEffect } from 'react';
 import { Button, Col, Form } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
@@ -18,6 +19,7 @@ const Messages = () => {
   }, []);
 
   const { channels, currentChannelId } = useSelector((state) => state.channels);
+  const { messages } = useSelector((state) => state.messages);
 
   const currentChannel = channels.length !== 0
     ? channels.find((el) => el.id === currentChannelId)
@@ -27,17 +29,15 @@ const Messages = () => {
     ? currentChannel.name
     : '';
 
-  const { messages } = useSelector((state) => state.messages);
   const currentMessages = messages.filter((el) => el.channelId === currentChannelId);
   const currentMessagesLength = currentMessages
     ? currentMessages.length
     : 0;
 
   const formik = useFormik({
-    initialValues: {
-      body: '',
-    },
+    initialValues: { body: '' },
     validationSchema: chatSchema(t('messageBody')),
+
     onSubmit: (values) => {
       const { body } = values;
       const { username } = JSON.parse(localStorage.getItem('userdata'));
@@ -47,9 +47,14 @@ const Messages = () => {
           channelId: currentChannelId,
           username,
         };
-        addNewMessage(newMessage);
-        formik.resetForm();
+        try {
+          addNewMessage(newMessage);
+          formik.resetForm();
+        } catch (err) {
+          toast.error(t('errors.message'));
+        }
       }
+
       inputMessage.current.focus();
     },
   });

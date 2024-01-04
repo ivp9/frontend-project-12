@@ -1,5 +1,7 @@
+import { io } from 'socket.io-client';
 import './styles/index.scss';
-import 'react-toastify/dist/ReactToastify.css';
 import initApp from './init.jsx';
 
-initApp();
+const socket = io();
+
+initApp(socket);

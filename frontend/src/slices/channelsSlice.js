@@ -8,8 +8,10 @@ const initialState = {
   channels: [],
   currentChannelId: generalChannelId,
 };
+
 const channelsSlice = createSlice({
   name: 'channels',
+
   initialState,
 
   reducers: {
@@ -68,4 +70,5 @@ export const {
   removeChannel,
   renameChannel,
 } = channelsSlice.actions;
+
 export default channelsSlice.reducer;

@@ -22,6 +22,7 @@ const SignupPage = () => {
   useEffect(() => {
     inputNameRef.current.focus();
   }, []);
+
   const formik = useFormik({
     initialValues: {
       username: '',
@@ -86,4 +87,5 @@ const SignupPage = () => {
     </Container>
   );
 };
+
 export default SignupPage;

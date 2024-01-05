@@ -1,19 +1,22 @@
-import React from 'react';
+import { Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-import notFoundImg from '../../assets/404.svg';
+import { appPaths } from '../../routes';
+
+import error from '../../assets/404.svg';
 
 const NotFoundPage = () => {
   const { t } = useTranslation();
 
   return (
     <div className="text-center">
-      <img src={notFoundImg} alt={t('pageNotFound')} className="img-fluid h-25" />
+      <Image width="30%" height="30%" alt="Страница не найдена" src={error} fluid />
       <h1 className="h4 text-muted">{t('pageNotFound')}</h1>
       <p className="text-muted">
         {t('redirect')}
-        <Link to="/">{t('mainPage')}</Link>
+        {' '}
+        <Link to={appPaths.chat}>{t('mainPage')}</Link>
       </p>
     </div>
   );

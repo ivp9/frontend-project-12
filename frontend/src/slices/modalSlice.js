@@ -7,9 +7,12 @@ const initialState = {
     targetId: null,
   },
 };
+
 const modalsSlice = createSlice({
   name: 'modals',
+
   initialState,
+
   reducers: {
     openModal: (state, { payload }) => {
       const { type, targetId } = payload;

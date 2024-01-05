@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import filter from 'leo-profanity';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
@@ -9,6 +8,7 @@ import { Provider as RollbarProvider, ErrorBoundary } from '@rollbar/react';
 
 import App from './components/App';
 import SocketProvider from './contexts/SocketProvider';
+
 import resources from './locales/index';
 import store from './slices/index';
 import chatApi from './chatApi/api';

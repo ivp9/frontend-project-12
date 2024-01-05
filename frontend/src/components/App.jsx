@@ -12,12 +12,12 @@ import {
 
 import useAuth from '../hooks/auth';
 import routes from '../routes';
-import AuthProvider from '../contexts/AuthProvider';
 
+import AuthProvider from '../contexts/AuthProvider';
 import Signup from './SignupPage';
 import LoginPage from './LoginPage';
 import ChatPage from './ChatPage';
-import NotFound from './Errors/NotFoundPage';
+import NotFound from './NotFound';
 
 const PrivateRoute = ({ children }) => {
   const auth = useAuth();
@@ -36,8 +36,10 @@ const AuthButton = () => {
     ? <Button onClick={auth.logOut}>{t('exit')}</Button>
     : null;
 };
+
 const App = () => {
   const { t } = useTranslation();
+
   return (
     <AuthProvider>
       <div className="d-flex flex-column h-100">
@@ -71,4 +73,5 @@ const App = () => {
     </AuthProvider>
   );
 };
+
 export default App;

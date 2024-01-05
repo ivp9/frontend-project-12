@@ -5,8 +5,10 @@ import fetchData from './fetchData';
 const initialState = {
   messages: [],
 };
+
 const messagesSlice = createSlice({
   name: 'messages',
+
   initialState,
 
   reducers: {

@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
 
 import LoginCard from './LoginCard';
+
 import { loginSchema } from '../validation/validationSchema';
 import useAuth from '../hooks/auth';
 import routes from '../routes';
@@ -17,9 +18,11 @@ const LoginPage = () => {
   const auth = useAuth();
   const navigate = useNavigate();
   const { t } = useTranslation();
+
   useEffect(() => {
     inputNameRef.current.focus();
   }, []);
+
   const formik = useFormik({
     initialValues: {
       username: '',
@@ -33,6 +36,7 @@ const LoginPage = () => {
           username: values.username,
           password: values.password,
         });
+
         localStorage.setItem('userdata', JSON.stringify(response.data));
         auth.logIn();
         setAuthFailed(false);
@@ -77,4 +81,5 @@ const LoginPage = () => {
     </Container>
   );
 };
+
 export default LoginPage;

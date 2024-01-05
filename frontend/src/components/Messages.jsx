@@ -22,22 +22,26 @@ const Messages = () => {
   const { messages } = useSelector((state) => state.messages);
 
   const currentChannelName = channels.find((el) => el.id === currentChannelId)?.name ?? '';
+
   const currentMessages = messages.filter((el) => el.channelId === currentChannelId);
   const currentMessagesLength = currentMessages.length;
 
   const formik = useFormik({
     initialValues: { body: '' },
+
     validationSchema: chatSchema(t('messageBody')),
 
     onSubmit: (values) => {
       const { body } = values;
       const { username } = JSON.parse(localStorage.getItem('userdata'));
+
       if (body) {
         const newMessage = {
           body,
           channelId: currentChannelId,
           username,
         };
+
         try {
           addNewMessage(newMessage);
           formik.resetForm();
@@ -107,4 +111,5 @@ const Messages = () => {
     </Col>
   );
 };
+
 export default Messages;

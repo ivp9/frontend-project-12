@@ -24,4 +24,5 @@ const ChatPage = () => {
     </Container>
   );
 };
+
 export default ChatPage;

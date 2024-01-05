@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
 
 import ModalInput from './ModalInput.jsx';
+
 import useSocket from '../../hooks/socket.js';
 import { closeModal } from '../../slices/modalSlice.js';
 import { newChannelSchema } from '../../validation/validationSchema.js';
@@ -15,9 +16,12 @@ const AddChannel = () => {
   const { channels } = useSelector((state) => state.channels);
   const { modals } = useSelector((state) => state.modals);
   const { isShown } = modals;
+
   const formik = useFormik({
     initialValues: { channelName: '' },
+
     validationSchema: newChannelSchema(channels, t('modal.unique'), t('modal.lengthParams')),
+
     onSubmit: (values) => {
       try {
         addNewChannel({ name: values.channelName });

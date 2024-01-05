@@ -11,6 +11,7 @@ const Channels = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const { channels, currentChannelId } = useSelector((state) => state.channels);
+
   const selector = useSelector((state) => state.modals);
   const { modalType } = selector.modals;
 
@@ -18,9 +19,12 @@ const Channels = () => {
     if (modalType === '') {
       return null;
     }
+
     const Component = getModal(modalType);
+
     return <Component />;
   };
+
   return (
     <Col xs={4} md={2} className="border-end pt-5 px-0 bg-light">
       <div className="d-flex justify-content-between mb-2 ps-4 pe-2">
@@ -53,4 +57,5 @@ const Channels = () => {
     </Col>
   );
 };
+
 export default Channels;

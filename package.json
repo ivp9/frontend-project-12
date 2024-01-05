@@ -9,18 +9,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "cd frontend && npm ci"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ivp9/frontend-project-12.git"
-  },
-  "author": "",
+  "author": "Ivan Pashkov",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ivp9/frontend-project-12/issues"
-  },
-  "homepage": "https://github.com/ivp9/frontend-project-12#readme",
   "dependencies": {
-    "@hexlet/chat-server": "^1.1.8",
-    "socket.io": "^4.7.2"
+    "@hexlet/chat-server": "^1.1.8"
   }
 }

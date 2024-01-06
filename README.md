@@ -5,6 +5,8 @@
 
 ## Chat app project (Slack)
 A simplified version of Slack chat. The chat has a system of registration, authorization. The chat has the ability to create channels, change channel names and delete them.
+<br/>
+[You can see the demo by following this link](https://frontend-project-12-production-8a3f.up.railway.app)
 
 ## Requirements:
 ```

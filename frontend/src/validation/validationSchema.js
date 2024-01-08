@@ -19,16 +19,6 @@ const registrationSchema = (nameMsg, passwordMsg, equalMsg, requiredMsg) => yup.
     .required(requiredMsg),
 });
 
-const loginSchema = (message) => yup.object().shape({
-  username: yup
-    .string()
-    .trim()
-    .required(message),
-  password: yup
-    .string()
-    .required(message),
-});
-
 const chatSchema = (message) => yup.object().shape({
   messageText: yup
     .string()
@@ -48,7 +38,6 @@ const newChannelSchema = (channels, doubleMsg, lengthMsg) => yup.object().shape(
 
 export {
   registrationSchema,
-  loginSchema,
   chatSchema,
   newChannelSchema,
 };

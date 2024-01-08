@@ -9,7 +9,6 @@ import { useRollbar } from '@rollbar/react';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useRef, useState } from 'react';
 
-import { loginSchema } from '../../validation/validationSchema';
 import { useAuth } from '../../hooks/index';
 import { apiRoutes, appPaths } from '../../routes';
 
@@ -37,8 +36,6 @@ const LoginPage = () => {
 
   const formik = useFormik({
     initialValues: { username: '', password: '' },
-
-    validationSchema: loginSchema(t('errors.required')),
 
     validateOnChange: false,
 

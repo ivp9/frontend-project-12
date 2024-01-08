@@ -36,7 +36,7 @@ const App = () => (
             </ProtectedRoute>
           )}
         />
-        <Route path={appPaths.notFound} element={<NotFoundPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
 
     </div>

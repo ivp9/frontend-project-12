@@ -37,7 +37,7 @@ const Add = () => {
 
     onSubmit: async ({ body }) => {
       try {
-        await socket.addChannel({ name: body });
+        await socket.addChannel({ name: body.trim() });
         dispatch(modalsActions.close());
         toast.success(t('success.newChannel'));
       } catch (error) {

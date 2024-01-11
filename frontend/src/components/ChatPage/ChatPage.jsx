@@ -16,18 +16,10 @@ const ChatPage = () => {
   const authHeaders = useMemo(() => ({ headers: getAuthHeader() }), [getAuthHeader]);
 
   useEffect(() => {
-    try {
-      dispatch(fetchDataThunk(authHeaders));
-      socket.connectSocket();
-      return () => socket.disconnectSocket();
-    } catch (error) {
-      if (error.response.status === 401) {
-        useAuth.logOut();
-        // eslint-disable-next-line consistent-return
-        return;
-      }
-      throw error;
-    }
+    dispatch(fetchDataThunk(authHeaders));
+    socket.connectSocket();
+
+    return () => socket.disconnectSocket();
   }, [dispatch, socket, authHeaders]);
 
   return (

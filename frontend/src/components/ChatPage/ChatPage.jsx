@@ -1,11 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useMemo } from 'react';
-
 import { Container, Row } from 'react-bootstrap';
 
 import getModalComponent from '../Modals';
 import ChatBox from './ChatBox';
-
 import fetchDataThunk from '../../slices/thunks';
 import { useAuth, useSocket } from '../../hooks';
 import { selectors as modalsSelectors } from '../../slices/modalSlice';
@@ -18,10 +16,18 @@ const ChatPage = () => {
   const authHeaders = useMemo(() => ({ headers: getAuthHeader() }), [getAuthHeader]);
 
   useEffect(() => {
-    dispatch(fetchDataThunk(authHeaders));
-    socket.connectSocket();
-
-    return () => socket.disconnectSocket();
+    try {
+      dispatch(fetchDataThunk(authHeaders));
+      socket.connectSocket();
+      return () => socket.disconnectSocket();
+    } catch (error) {
+      if (error.response.status === 401) {
+        useAuth.logOut();
+        // eslint-disable-next-line consistent-return
+        return;
+      }
+      throw error;
+    }
   }, [dispatch, socket, authHeaders]);
 
   return (

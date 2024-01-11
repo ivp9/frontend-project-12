@@ -17,11 +17,9 @@ const Channel = ({ isActive, channel }) => {
   const handleRemove = () => {
     dispatch(modalsActions.open({ type: 'removing', targetId: channel.id }));
   };
-
   const handleRename = () => {
     dispatch(modalsActions.open({ type: 'renaming', targetId: channel.id }));
   };
-
   const handleChoose = () => {
     dispatch(channelsActions.switchChannel({ id: channel.id }));
   };

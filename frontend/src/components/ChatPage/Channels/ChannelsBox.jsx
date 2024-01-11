@@ -1,3 +1,4 @@
+import { useRef, useEffect } from 'react';
 import { Col, Nav } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
@@ -12,6 +13,16 @@ const ChannelsBox = () => {
   const dispatch = useDispatch();
   const channels = useSelector(channelsSelectors.selectAll);
   const currentChannelId = useSelector((state) => state.channels.currentChannelId);
+  const channelRef = useRef(null);
+  const defaultChannelId = 1;
+
+  useEffect(() => {
+    if (currentChannelId !== defaultChannelId) {
+      channelRef.current.scrollTo(currentChannelId, channelRef.current.scrollHeight);
+    } else {
+      channelRef.current.scrollTo(0, 0);
+    }
+  }, [channels, currentChannelId]);
 
   const handleAddChannel = () => {
     dispatch(modalsActions.open({ type: 'adding', targetId: null }));
@@ -29,7 +40,7 @@ const ChannelsBox = () => {
           <span className="visually-hidden">+</span>
         </button>
       </div>
-      <Nav variant="pills" className="flex-column nav-fill px-2 mb-3 overflow-auto h-100 d-block">
+      <Nav ref={channelRef} variant="pills" className="flex-column nav-fill px-2 mb-3 overflow-auto h-100 d-block">
         {channels.map((channel) => (
           <Channel key={channel.id} channel={channel} isActive={currentChannelId === channel.id} />
         ))}

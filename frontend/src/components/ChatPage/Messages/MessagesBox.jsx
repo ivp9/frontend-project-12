@@ -8,7 +8,7 @@ import MessageForm from './MessageForm';
 
 import { selectors as messagesSelectors } from '../../../slices/messagesSlice';
 import { selectors as channelsSelectors } from '../../../slices/channelsSlice';
-import { useFilter } from '../../../hooks';
+import { useFilter, useAuth } from '../../../hooks';
 
 const MessagesBox = () => {
   const { t } = useTranslation();
@@ -16,6 +16,7 @@ const MessagesBox = () => {
   const currentChannel = useSelector(channelsSelectors.selectCurrentChannel);
   const currentMessages = useSelector(messagesSelectors.selectById);
   const filterProfanity = useFilter();
+  const { currentUser } = useAuth();
 
   const channelName = filterProfanity(currentChannel.name);
 
@@ -42,7 +43,7 @@ const MessagesBox = () => {
 
         <div ref={messagesRef} className="chat-messages overflow-auto px-5">
           {currentMessages.map((message) => (
-            <Message key={message.id} message={message} />
+            <Message key={message.id} message={message} currentUser={currentUser} />
           ))}
         </div>
         <MessageForm />

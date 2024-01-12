@@ -1,3 +1,5 @@
+import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useMemo } from 'react';
 import { Container, Row } from 'react-bootstrap';
@@ -14,13 +16,23 @@ const ChatPage = () => {
   const modalType = useSelector(modalsSelectors.selectModalType);
   const { getAuthHeader } = useAuth();
   const authHeaders = useMemo(() => ({ headers: getAuthHeader() }), [getAuthHeader]);
+  const { t } = useTranslation();
 
   useEffect(() => {
-    dispatch(fetchDataThunk(authHeaders));
-    socket.connectSocket();
+    // eslint-disable-next-line consistent-return
+    const fetchData = async () => {
+      try {
+        dispatch(fetchDataThunk(authHeaders));
+        await socket.connectSocket();
 
-    return () => socket.disconnectSocket();
-  }, [dispatch, socket, authHeaders]);
+        return () => socket.disconnectSocket();
+      } catch (error) {
+        toast.error(t('errors.invalidFeedback'));
+      }
+    };
+
+    fetchData();
+  }, [dispatch, socket, t, authHeaders]);
 
   return (
     <Container className="h-100 my-4 overflow-hidden rounded shadow">

@@ -5,7 +5,6 @@ import {
   Button, Card, Col, Container, Form, Image, Row,
 } from 'react-bootstrap';
 import { useFormik } from 'formik';
-import { useRollbar } from '@rollbar/react';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useRef, useState } from 'react';
 
@@ -17,7 +16,6 @@ import loginImg from '../assets/login.jpg';
 const LoginPage = () => {
   const { t } = useTranslation();
   const { logIn } = useAuth();
-  const rollbar = useRollbar();
   const navigate = useNavigate();
   const [authFailed, setAuthFailed] = useState(false);
   const inputName = useRef(null);
@@ -50,11 +48,9 @@ const LoginPage = () => {
         if (error.isAxiosError) {
           if (error.code === 'ERR_NETWORK') {
             toast.error(t('errors.network'));
-            rollbar.error('LoginPage', error);
           }
           if (error.response.status === 401) {
             setAuthFailed(true);
-            rollbar.error('LoginPage', error);
           }
         }
         throw error;

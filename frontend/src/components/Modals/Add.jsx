@@ -1,7 +1,6 @@
 import { toast } from 'react-toastify';
 import { Button, Form, Modal } from 'react-bootstrap';
 import { useFormik } from 'formik';
-import { useRollbar } from '@rollbar/react';
 import { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
@@ -14,7 +13,6 @@ import { selectors as channelsSelectors } from '../../slices/channelsSlice';
 const Add = () => {
   const { t } = useTranslation();
   const socket = useSocket();
-  const rollbar = useRollbar();
   const inputRef = useRef(null);
   const dispatch = useDispatch();
   const isOpened = useSelector((state) => state.modals.isOpened);
@@ -42,7 +40,6 @@ const Add = () => {
         toast.success(t('success.newChannel'));
       } catch (error) {
         toast.error(t('errors.network'));
-        rollbar.error('AddChannel', error);
       }
     },
   });

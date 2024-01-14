@@ -3,7 +3,6 @@ import { Button, Form, InputGroup } from 'react-bootstrap';
 import { useFormik } from 'formik';
 import { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
-import { useRollbar } from '@rollbar/react';
 import { useTranslation } from 'react-i18next';
 
 import { useAuth, useSocket } from '../hooks';
@@ -13,7 +12,6 @@ import { chatSchema } from '../validation/validationSchema';
 const MessageForm = () => {
   const auth = useAuth();
   const socket = useSocket();
-  const rollbar = useRollbar();
   const { t } = useTranslation();
   const inputMessage = useRef(null);
   const currentChannelId = useSelector(channelsSelectors.selectCurrentChannelId);
@@ -34,7 +32,6 @@ const MessageForm = () => {
         resetForm();
       } catch (error) {
         toast.error(t('errors.message'));
-        rollbar.error('AddChannel', error);
       }
     },
   });

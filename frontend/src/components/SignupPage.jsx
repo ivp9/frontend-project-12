@@ -5,7 +5,6 @@ import {
 } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
-import { useRollbar } from '@rollbar/react';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useRef, useState } from 'react';
 
@@ -18,7 +17,6 @@ import signupImg from '../assets/signup.jpg';
 const SignupPage = () => {
   const { t } = useTranslation();
   const { logIn } = useAuth();
-  const rollbar = useRollbar();
   const navigate = useNavigate();
   const [regFailed, setRegFailed] = useState(false);
   const inputName = useRef(null);
@@ -58,11 +56,9 @@ const SignupPage = () => {
         if (error.isAxiosError) {
           if (error.code === 'ERR_NETWORK') {
             toast.error(t('errors.network'));
-            rollbar.error('SignupPage', error);
           }
           if (error.response.status === 409) {
             setRegFailed(true);
-            rollbar.error('SignupPage', error);
           }
         }
         throw error;

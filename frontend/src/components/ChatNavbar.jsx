@@ -2,9 +2,9 @@ import { Container, Navbar } from 'react-bootstrap';
 import { Link, Outlet } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-import AuthButton from './AuthButton';
+import AuthButton from './ChatNavbarAuthButton';
 
-import { appPaths } from '../../routes';
+import { appPaths } from '../routes';
 
 const ChatNavbar = () => {
   const { t } = useTranslation();

@@ -5,7 +5,7 @@ import {
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 
-import ChatNavbar from './Navbar/ChatNavbar';
+import ChatNavbar from './ChatNavbar';
 import LoginPage from './LoginPage';
 import SignupPage from './SignupPage';
 import ChatPage from './ChatPage';

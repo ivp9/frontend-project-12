@@ -1,7 +1,6 @@
 import { toast } from 'react-toastify';
 import { Button, Form, Modal } from 'react-bootstrap';
 import { useFormik } from 'formik';
-import { useRollbar } from '@rollbar/react';
 import { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
@@ -14,7 +13,6 @@ import { selectors as channelsSelectors } from '../../slices/channelsSlice';
 const Rename = () => {
   const { t } = useTranslation();
   const socket = useSocket();
-  const rollbar = useRollbar();
   const inputRef = useRef(null);
   const dispatch = useDispatch();
   const { isOpened, targetId } = useSelector((state) => state.modals);
@@ -43,7 +41,6 @@ const Rename = () => {
         toast.success(t('success.renameChannel'));
       } catch (error) {
         toast.error(t('errors.network'));
-        rollbar.error('RenameChannel', error);
       }
     },
 

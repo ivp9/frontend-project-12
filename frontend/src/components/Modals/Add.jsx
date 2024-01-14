@@ -4,6 +4,7 @@ import { useFormik } from 'formik';
 import { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
+import filter from 'leo-profanity';
 
 import { useSocket } from '../../hooks';
 import { newChannelSchema } from '../../validation/validationSchema';
@@ -34,8 +35,10 @@ const Add = () => {
     validateOnChange: false,
 
     onSubmit: async ({ body }) => {
+      const filteredValue = filter.clean(body);
+
       try {
-        await socket.addChannel({ name: body.trim() });
+        await socket.addChannel({ name: filteredValue.trim() });
         dispatch(modalsActions.close());
         toast.success(t('success.newChannel'));
       } catch (error) {

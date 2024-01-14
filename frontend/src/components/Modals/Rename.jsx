@@ -4,6 +4,7 @@ import { useFormik } from 'formik';
 import { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
+import filter from 'leo-profanity';
 
 import { useSocket } from '../../hooks';
 import { newChannelSchema } from '../../validation/validationSchema';
@@ -35,8 +36,10 @@ const Rename = () => {
     validateOnChange: false,
 
     onSubmit: async ({ body }) => {
+      const newName = filter.clean(body);
+
       try {
-        await socket.renameChannel({ id: targetId, name: body });
+        await socket.renameChannel({ id: targetId, name: newName.trim() });
         dispatch(modalsActions.close());
         toast.success(t('success.renameChannel'));
       } catch (error) {

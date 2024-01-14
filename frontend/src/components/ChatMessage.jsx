@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import cn from 'classnames';
-import { useFilter } from '../../../hooks';
+import { useFilter } from '../hooks';
 
 const Message = ({ message, currentUser }) => {
   const filterProfanity = useFilter();

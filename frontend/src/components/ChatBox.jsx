@@ -1,9 +1,9 @@
 import { useSelector } from 'react-redux';
 
-import LoginPage from '../LoginPage/LoginPage';
-import ChannelsBox from './Channels/ChannelsBox';
-import MessagesBox from './Messages/MessagesBox';
-import LoadingSpinner from './LoadingSpinner';
+import LoginPage from './LoginPage';
+import ChannelsBox from './ChatChannelsBox';
+import MessagesBox from './ChatMessagesBox';
+import LoadingSpinner from './ChatLoadingSpinner';
 
 const statuses = {
   loading: 'loading',

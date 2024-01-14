@@ -9,11 +9,11 @@ import { useRollbar } from '@rollbar/react';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useRef, useState } from 'react';
 
-import { registrationSchema } from '../../validation/validationSchema';
-import { useAuth } from '../../hooks';
-import { apiRoutes, appPaths } from '../../routes';
+import { registrationSchema } from '../validation/validationSchema';
+import { useAuth } from '../hooks';
+import { apiRoutes, appPaths } from '../routes';
 
-import signupImg from '../../assets/signup.jpg';
+import signupImg from '../assets/signup.jpg';
 
 const SignupPage = () => {
   const { t } = useTranslation();

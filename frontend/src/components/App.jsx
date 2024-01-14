@@ -6,10 +6,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 
 import ChatNavbar from './Navbar/ChatNavbar';
-import LoginPage from './LoginPage/LoginPage';
-import SignupPage from './SignupPage/SignupPage';
-import ChatPage from './ChatPage/ChatPage';
-import NotFoundPage from './Errors/NotFoundPage';
+import LoginPage from './LoginPage';
+import SignupPage from './SignupPage';
+import ChatPage from './ChatPage';
+import NotFoundPage from './NotFoundPage';
 
 import { useAuth } from '../hooks';
 import { appPaths } from '../routes';

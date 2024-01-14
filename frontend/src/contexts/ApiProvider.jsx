@@ -9,8 +9,6 @@ const ApiProvider = ({ socket, children }) => {
   const dispatch = useDispatch();
 
   const connectSocket = useCallback(() => {
-    socket.connect();
-
     socket.on('newMessage', (message) => {
       dispatch(messagesActions.addMessage(message));
     });

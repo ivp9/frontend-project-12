@@ -4,9 +4,9 @@ import {
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
-import { useFilter } from '../../../hooks';
-import { actions as channelsActions } from '../../../slices/channelsSlice';
-import { actions as modalsActions } from '../../../slices/modalSlice';
+import { useFilter } from '../hooks';
+import { actions as channelsActions } from '../slices/channelsSlice';
+import { actions as modalsActions } from '../slices/modalSlice';
 
 const Channel = ({ isActive, channel }) => {
   const { t } = useTranslation();

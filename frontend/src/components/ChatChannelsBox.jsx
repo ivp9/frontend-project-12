@@ -3,10 +3,10 @@ import { Col, Nav } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
-import { selectors as channelsSelectors } from '../../../slices/channelsSlice';
-import { actions as modalsActions } from '../../../slices/modalSlice';
+import { selectors as channelsSelectors } from '../slices/channelsSlice';
+import { actions as modalsActions } from '../slices/modalSlice';
 
-import Channel from './Channel';
+import Channel from './ChatChannel';
 
 const ChannelsBox = () => {
   const { t } = useTranslation();

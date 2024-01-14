@@ -6,9 +6,9 @@ import { useSelector } from 'react-redux';
 import { useRollbar } from '@rollbar/react';
 import { useTranslation } from 'react-i18next';
 
-import { useAuth, useSocket } from '../../../hooks';
-import { selectors as channelsSelectors } from '../../../slices/channelsSlice';
-import { chatSchema } from '../../../validation/validationSchema';
+import { useAuth, useSocket } from '../hooks';
+import { selectors as channelsSelectors } from '../slices/channelsSlice';
+import { chatSchema } from '../validation/validationSchema';
 
 const MessageForm = () => {
   const auth = useAuth();

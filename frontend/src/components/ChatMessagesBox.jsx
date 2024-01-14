@@ -3,12 +3,12 @@ import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useRef } from 'react';
 
-import Message from './Message';
-import MessageForm from './MessageForm';
+import Message from './ChatMessage';
+import MessageForm from './ChatMessageForm';
 
-import { selectors as messagesSelectors } from '../../../slices/messagesSlice';
-import { selectors as channelsSelectors } from '../../../slices/channelsSlice';
-import { useFilter, useAuth } from '../../../hooks';
+import { selectors as messagesSelectors } from '../slices/messagesSlice';
+import { selectors as channelsSelectors } from '../slices/channelsSlice';
+import { useFilter, useAuth } from '../hooks';
 
 const MessagesBox = () => {
   const { t } = useTranslation();

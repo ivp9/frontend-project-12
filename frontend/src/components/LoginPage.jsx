@@ -9,10 +9,10 @@ import { useRollbar } from '@rollbar/react';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useRef, useState } from 'react';
 
-import { useAuth } from '../../hooks/index';
-import { apiRoutes, appPaths } from '../../routes';
+import { useAuth } from '../hooks/index';
+import { apiRoutes, appPaths } from '../routes';
 
-import loginImg from '../../assets/login.jpg';
+import loginImg from '../assets/login.jpg';
 
 const LoginPage = () => {
   const { t } = useTranslation();

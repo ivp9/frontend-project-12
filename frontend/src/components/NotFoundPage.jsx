@@ -2,9 +2,9 @@ import { Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-import { appPaths } from '../../routes';
+import { appPaths } from '../routes';
 
-import error from '../../assets/404.svg';
+import error from '../assets/404.svg';
 
 const NotFoundPage = () => {
   const { t } = useTranslation();

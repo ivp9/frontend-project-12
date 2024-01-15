@@ -10,12 +10,19 @@ import fetchDataThunk from '../slices/thunks';
 import { useAuth, useSocket } from '../hooks';
 import { selectors as modalsSelectors } from '../slices/modalSlice';
 
+const getAuthHeader = (currentUser) => {
+  if (currentUser && currentUser.token) {
+    return { Authorization: `Bearer ${currentUser.token}` };
+  }
+  return {};
+};
+
 const ChatPage = () => {
   const socket = useSocket();
   const dispatch = useDispatch();
   const modalType = useSelector(modalsSelectors.selectModalType);
-  const { getAuthHeader } = useAuth();
-  const authHeaders = useMemo(() => ({ headers: getAuthHeader() }), [getAuthHeader]);
+  const { currentUser } = useAuth();
+  const authHeaders = useMemo(() => ({ headers: getAuthHeader(currentUser) }), [currentUser]);
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -23,9 +30,6 @@ const ChatPage = () => {
     const fetchData = async () => {
       try {
         dispatch(fetchDataThunk(authHeaders));
-        await socket.connectSocket();
-
-        return () => socket.disconnectSocket();
       } catch (error) {
         toast.error(t('errors.invalidFeedback'));
       }

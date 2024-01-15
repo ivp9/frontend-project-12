@@ -9,11 +9,32 @@ import AuthProvider from './contexts/AuthProvider';
 import ApiProvider from './contexts/ApiProvider';
 import FilterProvider from './contexts/FilterProvider';
 import resources from './locales';
-import store from './slices';
+import store from './slices/store';
 import rollbarConfig from './configs/rollbarConfig';
+import { actions as messagesActions } from './slices/messagesSlice';
+import { actions as channelsActions } from './slices/channelsSlice';
 
 const init = async () => {
-  const websocket = io();
+  const socket = io();
+
+  socket.on('newMessage', (message) => {
+    store.dispatch(messagesActions.addMessage(message));
+  });
+
+  socket.on('newChannel', (channel) => {
+    store.dispatch(channelsActions.addChannel(channel));
+  });
+
+  socket.on('removeChannel', ({ id }) => {
+    store.dispatch(channelsActions.removeChannel(id));
+  });
+
+  socket.on('renameChannel', (channel) => {
+    store.dispatch(channelsActions.renameChannel({
+      id: channel.id,
+      changes: { name: channel.name },
+    }));
+  });
 
   const i18n = i18next.createInstance();
 
@@ -25,7 +46,7 @@ const init = async () => {
     <RollbarProvider config={rollbarConfig}>
       <ErrorBoundaryProvider>
         <StoreProvider store={store}>
-          <ApiProvider socket={websocket}>
+          <ApiProvider socket={socket}>
             <AuthProvider>
               <FilterProvider>
                 <I18nextProvider i18n={i18n}>

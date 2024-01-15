@@ -2,33 +2,10 @@ import { useCallback, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { SocketContext } from './index';
-import { actions as messagesActions } from '../slices/messagesSlice';
 import { actions as channelsActions } from '../slices/channelsSlice';
 
 const ApiProvider = ({ socket, children }) => {
   const dispatch = useDispatch();
-
-  const connectSocket = useCallback(() => {
-    socket.on('newMessage', (message) => {
-      dispatch(messagesActions.addMessage(message));
-    });
-
-    socket.on('newChannel', (channel) => {
-      dispatch(channelsActions.addChannel(channel));
-    });
-
-    socket.on('removeChannel', ({ id }) => {
-      dispatch(channelsActions.removeChannel(id));
-    });
-
-    socket.on('renameChannel', (channel) => {
-      dispatch(channelsActions.renameChannel({ id: channel.id, changes: { name: channel.name } }));
-    });
-  }, [dispatch, socket]);
-
-  const disconnectSocket = useCallback(() => {
-    socket.disconnect();
-  }, [socket]);
 
   const sendMessage = useCallback(
     async (message) => {
@@ -63,20 +40,16 @@ const ApiProvider = ({ socket, children }) => {
 
   const socketContext = useMemo(
     () => ({
-      connectSocket,
       sendMessage,
       addChannel,
       removeChannel,
       renameChannel,
-      disconnectSocket,
     }),
     [
-      connectSocket,
       sendMessage,
       addChannel,
       removeChannel,
       renameChannel,
-      disconnectSocket,
     ],
   );
 

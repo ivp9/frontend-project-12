@@ -1,6 +1,5 @@
-### Hexlet tests and Maintainability:
+### Eslint and hexlet badges:
 [![Actions Status](https://github.com/ivp9/frontend-project-12/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/ivp9/frontend-project-12/actions)
-[![Maintainability](https://api.codeclimate.com/v1/badges/82923e44215d98d5a347/maintainability)](https://codeclimate.com/github/ivp9/frontend-project-12/maintainability)
 [![eslint-check](https://github.com/ivp9/frontend-project-12/actions/workflows/eslint-check.yml/badge.svg)](https://github.com/ivp9/frontend-project-12/actions/workflows/eslint-check.yml)
 
 ## Chat app project (Slack)
